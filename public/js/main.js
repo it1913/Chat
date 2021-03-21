@@ -7,10 +7,9 @@ send.addEventListener('click', function(e){
     if(message.value){
         socket.emit('chat', message.value);
     }
-
 });
 
-socket.on('chat', msg => {
+socket.on('message', msg => {
     console.log(msg);
-    chatBox.innerHTML += `<div>${msg}</div>`;
+   
 })
