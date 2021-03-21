@@ -13,11 +13,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', socket => {
     //Pozdrav nově příchozího
     socket.emit('message', 'Vítej v chatovací místonosti.');
-     //Zpráva upozornující na nově příchozího uživatele
-     socket.broadcast.emit('message', 'Uživatel se připojil do chatu');
-     //Zpráva upozornující na uživatele, který opouští chat
+    //Zpráva upozornující na nově příchozího uživatele
+    socket.broadcast.emit('message', 'Uživatel se připojil do chatu');
+    //Zpráva upozornující na uživatele, který opouští chat
     socket.on('disconnect', () => {
         io.emit('message', 'Uživatel opouští chat');
+    });
+    //
+    socket.on('chatMessage', msg => {
+        io.emit('message', msg);
     });
 });
 
