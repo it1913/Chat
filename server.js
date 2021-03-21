@@ -3,6 +3,7 @@ const socketio = require('socket.io');
 const http = require('http');
 const path = require('path');
 const formatMessage = require('./utils/messages');
+const { userJoin, getCurrentUser, userLeave, getUsers } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -13,17 +14,27 @@ const chatName = 'SERVER';
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', socket => {
-    //Pozdrav nově příchozího
-    socket.emit('message',formatMessage(chatName,'Vítej v chatovací místnosti.'));
-    //Zpráva upozornující na nově příchozího uživatele
-    socket.broadcast.emit('message',formatMessage(chatName,'Uživatel se připojil do chatu'));
+    socket.on('joinChat', ({ username }) => {
+        const user = userJoin(socket.id, username);
+        //Pozdrav nově příchozího
+        socket.emit('message', formatMessage(chatName, 'Vítej v chatovací místnosti.'));
+        //Zpráva upozornující na nově příchozího uživatele
+        socket.broadcast.emit('message', formatMessage(chatName, `${user.username} se připojil do chatu`));
+    });
+
+
     //Zpráva upozornující na uživatele, který opouští chat
     socket.on('disconnect', () => {
-        io.emit('message', formatMessage(chatName,'Uživatel opouští chat'));
+        const user = userLeave(socket.id);
+        if (user) {
+            io.emit('message', formatMessage(chatName, `${user.username} opouští chat`));
+        }
+
     });
     //
     socket.on('chatMessage', msg => {
-        io.emit('message', formatMessage('USER', msg));
+        const user = getCurrentUser(socket.id);
+        io.emit('message', formatMessage(user.username, msg));
     });
 });
 

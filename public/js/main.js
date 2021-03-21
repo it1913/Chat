@@ -2,6 +2,9 @@ const socket = io();
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-message');
 
+const{username} = Qs.parse(location.search, {
+ignoreQueryPrefix: true
+});
 
 socket.on('message', message => {
     console.log(message);
@@ -9,6 +12,8 @@ socket.on('message', message => {
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
 })
+
+socket.emit('joinChat',{username});
 
 chatForm.addEventListener('submit', e => {
     e.preventDefault();
