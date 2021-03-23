@@ -1,0 +1,32 @@
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(190, 176, 253);
+        }
+
+        .container {
+            margin: auto;
+            padding: 10px;
+            padding: 0 5px;
+            width: 500px;
+            max-width: 80vh;
+            height: 90vh;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .loginMain {
+            margin-top: 10vh;
+        }
+
+        .loginForm {            
+            background-color: rgb(97, 97, 255);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px black;
+        }
+.btn {
+    background-color: rgb(190, 176, 253);
+    color: black;
+}

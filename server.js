@@ -20,6 +20,9 @@ io.on('connection', socket => {
         socket.emit('message', formatMessage(chatName, 'Vítej v chatovací místnosti.'));
         //Zpráva upozornující na nově příchozího uživatele
         socket.broadcast.emit('message', formatMessage(chatName, `${user.username} se připojil do chatu`));
+        io.emit('users', {
+            users: getUsers(user)
+        });
     });
 
 
@@ -31,13 +34,13 @@ io.on('connection', socket => {
         }
 
     });
-    //
+    //    
     socket.on('chatMessage', msg => {
         const user = getCurrentUser(socket.id);
         io.emit('message', formatMessage(user.username, msg));
     });
-});
 
+});
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, function () {

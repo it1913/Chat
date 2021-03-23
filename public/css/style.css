@@ -1,66 +1,83 @@
 .main{
     background-color: rgb(97, 97, 255);
-    margin-top: 20px;
-    padding-top: 10px;
-    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .chat-message{
-    background-color: rgb(190, 176, 253);
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.right-side{
-    background-color: white;
-    height: 60vh;
-max-height: 60vh;
-}
-
-.left-side{
-    background-color: cornflowerblue;
-    height: 60vh;
-max-height: 60vh;
+    /*background-color: rgb(190, 176, 253);*/
 }
 
 ul{
-    font-size: 30px;
 }
 
 .meta{
-    color: grey;
-    margin: 5px;
+    color: grey; 
+    margin: 0;
 }
 
 .text{
-    font-size: 20px;
-    margin: 5px;
+    padding: 0;
+    margin: 0;
 }
 
 .other{
-    background-color: lightcoral;
+    background: rgb(190, 176, 253);
+    margin: 10vh;
 }
 
 .range{
-height: 60vh;
-max-height: 60vh;
+    max-height: 60vh;    
+    overflow-y: scroll;
 }
 
-input[type='text'] {
-	font-size: 16px;
-	padding: 5px;
-	height: 40px;
-	flex: 1;
-    width: 90%;
+.left-side {
+    background-color: rgb(190, 176, 253);  
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-.txt-btn{
-    padding: 20px 10px;
+.right-side {
+    /*background-color: white;*/
 }
 
-.btn{
-    background-color: cornflowerblue;
-    width: 100%;
+.btn {
+    background-color: rgb(190, 176, 253);
+    color: black;
 }
 
-#msg{width: 100%;}
+.form-container {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#msg, #send{ width: 100%;}
+
+.message {
+    background-color: rgb(190, 176, 253);  
+    padding: 5px 10px;
+    margin: 10px 5px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px black;
+}
+
+.message:nth-child(odd) {
+    background-color: rgb(212, 204, 248);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(97, 97, 255);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(190, 176, 253);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(190, 176, 253);
+}

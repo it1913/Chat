@@ -18,8 +18,7 @@ function userLeave(id){
     }
 }
 
-function getUsers(){
-    return users.filter(user => room);
+function getUsers(id){
 }
 
 module.exports = {
